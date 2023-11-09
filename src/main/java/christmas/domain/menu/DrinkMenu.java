@@ -2,7 +2,9 @@ package christmas.domain.menu;
 
 public enum DrinkMenu {
 
-    ZERO_COKE("제로콜라",3000);
+    ZEROCOKE("제로콜라", 3000),
+    REDWAIN("레드와인", 60000),
+    CHAMPAGNE("샴페인", 250000);
 
     private final String name;
     private final int price;
