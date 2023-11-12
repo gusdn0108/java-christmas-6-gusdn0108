@@ -24,6 +24,16 @@ public enum Menu {
         this.menuCategory = menuCategory;
     }
 
+    public static Menu findByName(String menuName) {
+        for(Menu menu : values()){
+            if(menu.getName().equals(menuName)){
+                return menu;
+            }
+        }
+        throw new IllegalArgumentException("메뉴에 없는 매뉴를 입력하셨습니다");
+    }
+
+
 
     public String getName() {
         return name;
