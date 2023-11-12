@@ -1,18 +1,34 @@
 package christmas.controller;
 
+import christmas.domain.Menu;
+import christmas.domain.OrderMenu;
 import christmas.view.InputView;
 import christmas.view.OutputView;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Controller {
     public void run() {
-        part1();
+        String userInput = visitDay();
+        orderMenu();
     }
 
-    private void part1(){
+    private OrderMenu orderMenu() {
+        OutputView.printOrderMenuAndCounted();
+        String userInput1 = InputView.userInput();
+        OrderMenu orderMap = foodOrder(userInput1);
+        OutputView.printOrderMenuAndCounted(orderMap.getOrderMap());
+        return orderMap;
+    }
+
+    private static String visitDay() {
         OutputView.printEventStart();
         OutputView.printExpectationVisited();
-        String userInput = InputView.userInput();
-        InputView.parsedInputNumber(userInput);
-
+        return InputView.userInput();
     }
+
+    
+
+
+
 }
