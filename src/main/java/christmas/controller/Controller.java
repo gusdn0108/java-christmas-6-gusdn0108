@@ -2,6 +2,7 @@ package christmas.controller;
 
 import christmas.domain.Menu;
 import christmas.domain.OrderMenu;
+import christmas.domain.VisitDay;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 import java.util.HashMap;
@@ -9,8 +10,11 @@ import java.util.Map;
 
 public class Controller {
     public void run() {
-        String userInput = visitDay();
-        orderMenu();
+        VisitDay visitDay = visitDay();
+        OrderMenu orderMenu = orderMenu();
+        int totalPrice = orderMenu.totalPrice();
+        OutputView.printTotalPrice(totalPrice);
+
     }
 
     private OrderMenu orderMenu() {
@@ -21,10 +25,11 @@ public class Controller {
         return orderMap;
     }
 
-    private static String visitDay() {
+    private static VisitDay visitDay() {
         OutputView.printEventStart();
         OutputView.printExpectationVisited();
-        return InputView.userInput();
+        String userInput = InputView.userInput();
+        return new VisitDay(InputView.parsedInputNumber(userInput));
     }
 
     private OrderMenu foodOrder(String order) {
