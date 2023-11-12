@@ -37,6 +37,16 @@ public class OrderMenu {
         return true;
     }
 
+    public int totalPrice(){
+        int sum = 0;
+        for (Map.Entry<Menu, Integer> entry : orderMap.entrySet()) {
+            Menu menu = entry.getKey();
+            int quantity = entry.getValue();
+            sum += menu.getPrice() * quantity;
+        }
+        return sum;
+    }
+
     public Map<Menu, Integer> getOrderMap() {
         return orderMap;
     }
