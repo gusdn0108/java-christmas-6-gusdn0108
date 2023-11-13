@@ -24,5 +24,9 @@ public class OutputView {
         System.out.println("평일 할인: "+"-"+weekdaySalePrice+"원");
     }
 
+    public static void printSaleWeekend(int weekdaySalePrice) {
+        System.out.println("주말 할인: "+(-1)*weekdaySalePrice+"원");
+    }
+
 
 }
