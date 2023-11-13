@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import christmas.utils.ErrorMessage;
+
 public enum Menu {
     MUSHROOMCREAMSOUP("양송이수프",6000, MenuCategory.Appetizer),
     TAPAS("타파스",5500,MenuCategory.Appetizer),
@@ -30,7 +32,7 @@ public enum Menu {
                 return menu;
             }
         }
-        throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        throw new IllegalArgumentException(ErrorMessage.USER_INSERT_NOT_AVAILABLE_MENU.getMessage());
     }
 
     public String getName() {
