@@ -1,23 +1,26 @@
 package christmas.domain;
 
-import christmas.view.OutputView;
+import christmas.utils.ErrorMessage;
 import java.util.List;
 
 public class VisitDay {
     private final int day;
+    private static final int INSERT_DAY_MIN_RANGE = 1;
+    private static final int INSERT_DAY_MAX_RANGE = 31;
+
 
     public VisitDay(int day) {
-            validate(day);
-            this.day = day;
+        validate(day);
+        this.day = day;
     }
 
     private static void dayRange(int day) {
-        if (day < 1 || day > 31) {
-            throw new IllegalArgumentException("[ERROR] 날짜는 1-31 까지만 입력 가능합니다");
+        if (day < INSERT_DAY_MIN_RANGE || day > INSERT_DAY_MAX_RANGE) {
+            throw new IllegalArgumentException(ErrorMessage.INSERT_DAY_RANGE_ERROR.getMessage());
         }
     }
 
-    private void validate(int day){
+    private void validate(int day) {
         dayRange(day);
     }
 
