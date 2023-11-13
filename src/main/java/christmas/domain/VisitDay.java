@@ -29,6 +29,15 @@ public class VisitDay {
         return dayType;
     }
 
+    public String specialDay(int day) {
+        String dayType = "별";
+        if (day == 3 || day == 10 || day == 17 || day == 24 || day == 25 || day == 31) {
+            dayType = "별";
+        }
+        return dayType;
+    }
+
+
     public int getDay() {
         return day;
     }
