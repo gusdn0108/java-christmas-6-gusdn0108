@@ -44,4 +44,8 @@ public enum Menu {
     public MenuCategory getMenuCategory() {
         return menuCategory;
     }
+
+    public boolean isCategory(MenuCategory menuCategory) {
+        return this.menuCategory.equals(menuCategory);
+    }
 }
