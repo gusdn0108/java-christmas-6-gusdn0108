@@ -21,6 +21,11 @@ class VisitDayTest {
         assertTrue(weekday.isWeekday());
     }
 
-
+    @DisplayName("지정한 날짜가 특별한 날이 맞는지 확인하기")
+    @Test
+    void testIsContained() {
+        VisitDay specialDay = new VisitDay(3);
+        assertTrue(specialDay.isContained(List.of(3, 10, 17)));
+    }
 
 }
