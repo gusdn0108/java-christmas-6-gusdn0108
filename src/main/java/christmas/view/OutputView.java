@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.domain.Badge;
 import christmas.domain.Menu;
 import java.util.Map;
 
@@ -68,6 +69,23 @@ public class OutputView {
     public static void printAmountOfPayment(int amountTotalPrice) {
         System.out.println("\n<할인 후 예상 결제 금액>");
         System.out.println(amountTotalPrice+"원");
+    }
+
+    public static  void printEventBadge(Badge badge){
+        System.out.println("\n<12월 이벤트 배지>");
+
+        if(badge == Badge.Nothing){
+            System.out.println("없음");
+        }
+        if(badge == Badge.Star){
+            System.out.println("별");
+        }
+        if(badge == Badge.Tree){
+            System.out.println("나무");
+        }
+        if(badge == Badge.Stanta){
+            System.out.println("산타");
+        }
     }
 
 }
