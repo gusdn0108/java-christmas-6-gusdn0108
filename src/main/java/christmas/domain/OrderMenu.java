@@ -59,6 +59,10 @@ public class OrderMenu {
         return menus;
     }
 
+    public int getOrderCount(Menu categroyMenu) {
+        return orderMap.get(categroyMenu);
+    }
+
     public Map<Menu, Integer> getOrderMap() {
         return orderMap;
     }
