@@ -1,6 +1,7 @@
 package christmas.domain;
 
 import christmas.view.OutputView;
+import java.util.List;
 
 public class VisitDay {
     private final int day;
@@ -31,5 +32,9 @@ public class VisitDay {
 
     public int getDay() {
         return day;
+    }
+
+    public boolean isContained(List<Integer> days) {
+        return days.contains(day);
     }
 }
