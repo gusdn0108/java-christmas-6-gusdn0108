@@ -12,6 +12,19 @@ public enum Badge {
         this.minimumPrice = minimumPrice;
     }
 
+    public Badge awardBadge(int price) {
+        Badge maxBadge = Nothing;
+
+        for (Badge badge : values()) {
+            if (maxBadge.minimumPrice < price && maxBadge.minimumPrice < badge.minimumPrice) {
+                maxBadge = badge;
+            }
+        }
+
+        return maxBadge;
+    }
+
+
     public int getMinimumPrice() {
         return minimumPrice;
     }
