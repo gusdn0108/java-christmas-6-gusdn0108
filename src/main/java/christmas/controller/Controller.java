@@ -30,13 +30,12 @@ public class Controller {
         OutputView.printPromotionPrice();
         OutputView.printDaySalePrice(salePrice.getSale());
 
-       int discountPrice = discountPrice(visitDay,orderMenu);
-
+        int discountPrice = discountPrice(visitDay, orderMenu);
         int promotionPrice = promotionPrice(totalPrice);
 
-        int totalSalePrice = weekdayPrice + weekEndPrice + specialDayPrice + promotionPrice + salePrice.getSale();
-        OutputView.printTotalSalePrice(totalSalePrice);
-        int amountTotalPrice = totalPrice - totalSalePrice;
+        OutputView.printTotalSalePrice(discountPrice + promotionPrice);
+
+        int amountTotalPrice = totalPrice - discountPrice;
         OutputView.printAmountOfPayment(amountTotalPrice);
 
         Badge badge = Badge.awardBadge(amountTotalPrice);
@@ -53,12 +52,12 @@ public class Controller {
         return gitEventDiscount;
     }
 
-    private int discountPrice(VisitDay visitDay, OrderMenu orderMenu){
-        int weekdayPrice = new WeekdaySale().discount(visitDay,orderMenu);
-        int weekEndPrice = new WeekendDaySale().discount(visitDay,orderMenu);
-        int specialDayPrice = new SpecialDaySale().discount(visitDay,orderMenu);
+    private int discountPrice(VisitDay visitDay, OrderMenu orderMenu) {
+        int weekdayPrice = new WeekdaySale().discount(visitDay, orderMenu);
+        int weekEndPrice = new WeekendDaySale().discount(visitDay, orderMenu);
+        int specialDayPrice = new SpecialDaySale().discount(visitDay, orderMenu);
 
-        return weekdayPrice+weekEndPrice+specialDayPrice;
+        return weekdayPrice + weekEndPrice + specialDayPrice;
     }
 
 
