@@ -89,6 +89,11 @@ public class OutputView {
         System.out.println("없음");
     }
 
+    public static void promotionMenu(){
+        System.out.println("\n<증정 메뉴>");
+    }
+
+
 
 
 }
