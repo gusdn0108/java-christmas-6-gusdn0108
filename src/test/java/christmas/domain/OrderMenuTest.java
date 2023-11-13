@@ -30,4 +30,15 @@ class OrderMenuTest {
         OrderMenu orderMenu = new OrderMenu(orderMap);
         assertEquals(1, orderMenu.getMenuInCategory(MenuCategory.Dessert).size());
     }
+
+    @DisplayName("주문한 매뉴 갯수 찾기")
+    @Test
+    void testGetOrderCount() {
+        Map<Menu, Integer> orderMap = new HashMap<>();
+        orderMap.put(Menu.REDWAIN, 2);
+        orderMap.put(Menu.CHRISMASFASTA, 1);
+
+        OrderMenu orderMenu = new OrderMenu(orderMap);
+        assertEquals(2, orderMenu.getOrderCount(Menu.REDWAIN));
+    }
 }
