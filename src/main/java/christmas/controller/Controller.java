@@ -30,7 +30,10 @@ public class Controller {
         int totalSalePrice;
         totalSalePrice = weekdayPrice+weekEndPrice+specialDayPrice+promotionPrice+salePrice.getSale();
         OutputView.printTotalSalePrice(totalSalePrice);
+        int amountTotalPrice;
 
+        amountTotalPrice = totalPrice - totalSalePrice;
+        OutputView.printAmountOfPayment(amountTotalPrice);
 
     }
 
