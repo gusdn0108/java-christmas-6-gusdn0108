@@ -97,6 +97,9 @@ public class OutputView {
         System.out.println("증정 이벤트: " + "-" + gitEventDiscount + "원");
     }
 
+    public static void printGiveAwayChampagne() {
+        System.out.println("샴페인 1개");
+    }
 
 
 
