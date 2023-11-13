@@ -17,17 +17,12 @@ public class OutputView {
         System.out.println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
     }
 
-    public static void printAppetizerMenu(){
-        System.out.println("<애피타이저>");
-    }
-
-    public static void printMainMenu(){
-        System.out.println("<메인메뉴>");
+    public static void printShowEvent(){
+        System.out.println("12월 26일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
     }
 
     public static void printOrderMenuAndCounted(Map<Menu, Integer> orderMap) {
-        System.out.println("<주문 메뉴>");
-
+        System.out.println("\n<주문 메뉴>");
         for (Map.Entry<Menu, Integer> entry : orderMap.entrySet()) {
             Menu menu = entry.getKey();
             int count = entry.getValue();
@@ -35,12 +30,12 @@ public class OutputView {
         }
     }
 
-    public static void printTotalPrice(int totalprice){
+    public static void printBeforeSaleTotalPrice(int totalprice){
         System.out.println("\n<할인 전 총주문 금액>");
         System.out.println(totalprice+"원");
     }
 
-    public static void printPromotionPrice() {
+    public static void printBenefitDetails() {
         System.out.println("\n<혜택 내역>");
     }
 
@@ -63,7 +58,7 @@ public class OutputView {
 
     public static void printTotalSalePrice(int totalSalePrice) {
         System.out.println("\n<총혜택 금액>");
-        System.out.println("-"+totalSalePrice+"원");
+        System.out.println((-1)*totalSalePrice+"원");
     }
 
     public static void printAmountOfPayment(int amountTotalPrice) {
@@ -71,9 +66,11 @@ public class OutputView {
         System.out.println(amountTotalPrice+"원");
     }
 
-    public static  void printEventBadge(Badge badge){
+    public static void printPromotionBadgeEvent(){
         System.out.println("\n<12월 이벤트 배지>");
-
+    }
+    public static  void printEventBadge(Badge badge){
+        printPromotionBadgeEvent();
         if(badge == Badge.Nothing){
             System.out.println("없음");
         }
@@ -87,5 +84,6 @@ public class OutputView {
             System.out.println("산타");
         }
     }
+
 
 }
