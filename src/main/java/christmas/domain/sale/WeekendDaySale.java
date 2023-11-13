@@ -7,6 +7,7 @@ import christmas.domain.VisitDay;
 import christmas.view.OutputView;
 
 public class WeekendDaySale implements Sale {
+    private static final int DISCOUNT_PRICE = 2023;
     public int discount(VisitDay visitDay, OrderMenu orderMenu) {
         int weekendSalePrice = 0;
         if (visitDay.isWeekend()) {
@@ -17,12 +18,11 @@ public class WeekendDaySale implements Sale {
     }
 
     public int weekendSale(VisitDay visitDay, OrderMenu orderMenu) {
-        int mainDiscount = 2023;
         int discountPrice = 0;
         if (visitDay.isWeekend()) {
             for(Menu categroyMenu :orderMenu.getMenuInCategory(MenuCategory.Main)){
                 int count = orderMenu.getOrderCount(categroyMenu);
-                discountPrice += mainDiscount * count;
+                discountPrice += DISCOUNT_PRICE * count;
             }
 
         }
