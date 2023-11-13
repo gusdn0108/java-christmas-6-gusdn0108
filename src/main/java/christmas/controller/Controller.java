@@ -23,6 +23,17 @@ public class Controller {
         Sale salePrice = Sale.totalDaySalePrice(visitDay.getDay());
     }
 
+    private int weekEndPrice(VisitDay visitDay, OrderMenu orderMenu) {
+        int weekdaySalePrice = 0;
+        if (Objects.equals(visitDay.getDayType(visitDay.getDay()), "주말")) {
+            weekdaySalePrice = weekendSale(visitDay, orderMenu);
+            if(weekdaySalePrice != 0 ){
+                OutputView.printSaleWeekend(weekdaySalePrice);
+            }
+        }
+
+        return weekdaySalePrice;
+    }
 
 
 
