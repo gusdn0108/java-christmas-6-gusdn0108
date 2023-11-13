@@ -1,12 +1,18 @@
 package christmas.controller;
 
 import christmas.domain.Menu;
+import christmas.domain.MenuCategory;
 import christmas.domain.OrderMenu;
+import christmas.domain.Sale;
 import christmas.domain.VisitDay;
 import christmas.view.InputView;
 import christmas.view.OutputView;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
 
 public class Controller {
     public void run() {
@@ -14,8 +20,26 @@ public class Controller {
         OrderMenu orderMenu = orderMenu();
         int totalPrice = orderMenu.totalPrice();
         OutputView.printTotalPrice(totalPrice);
-
+        Sale salePrice = Sale.totalDaySalePrice(visitDay.getDay());
     }
+
+
+    private int weekendSale(VisitDay visitDay, OrderMenu orderMenu) {
+        Map<Menu, Integer> orderMap = orderMenu.getOrderMap();
+        int mainDiscount = 2023;
+        int discountPrice = 0;
+        if(Objects.equals(visitDay.getDayType(visitDay.getDay()), "주말")){
+            for (Entry<Menu, Integer> entry : orderMap.entrySet()) {
+                Menu menu = entry.getKey();
+                int count = entry.getValue();
+                if(menu.getMenuCategory() == MenuCategory.Main){
+                    discountPrice += mainDiscount * count;
+                }
+            }
+        }
+        return discountPrice;
+    }
+
 
     private OrderMenu orderMenu() {
         OutputView.printOrderMenuAndCounted();
