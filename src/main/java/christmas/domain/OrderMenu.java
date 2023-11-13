@@ -47,6 +47,7 @@ public class OrderMenu {
         return sum;
     }
 
+
     public Map<Menu, Integer> getOrderMap() {
         return orderMap;
     }

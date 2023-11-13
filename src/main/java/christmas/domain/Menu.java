@@ -30,10 +30,8 @@ public enum Menu {
                 return menu;
             }
         }
-        throw new IllegalArgumentException("메뉴에 없는 매뉴를 입력하셨습니다");
+        throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
-
-
 
     public String getName() {
         return name;

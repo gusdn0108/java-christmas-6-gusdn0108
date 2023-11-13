@@ -16,6 +16,34 @@ public class OutputView {
         System.out.println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
     }
 
+    public static void printAppetizerMenu(){
+        System.out.println("<애피타이저>");
+    }
+
+    public static void printMainMenu(){
+        System.out.println("<메인메뉴>");
+    }
+
+    public static void printOrderMenuAndCounted(Map<Menu, Integer> orderMap) {
+        System.out.println("<주문 메뉴>");
+
+        for (Map.Entry<Menu, Integer> entry : orderMap.entrySet()) {
+            Menu menu = entry.getKey();
+            int count = entry.getValue();
+            System.out.println(menu.getName()+" "+ count + "개");
+        }
+    }
+
+    public static void printTotalPrice(int totalprice){
+        System.out.println("\n<할인 전 총주문 금액>");
+        System.out.println(totalprice+"원");
+    }
+
+    public static void printPromotionPrice() {
+        System.out.println("\n<혜택 내역>");
+    }
+
+
     public static void printDaySalePrice(int salePrice) {
         System.out.println("크리스마스 디데이 할인: "+"-"+salePrice+"원");
     }
@@ -41,6 +69,5 @@ public class OutputView {
         System.out.println("\n<할인 후 예상 결제 금액>");
         System.out.println(amountTotalPrice+"원");
     }
-
 
 }
