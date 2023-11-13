@@ -93,6 +93,11 @@ public class OutputView {
         System.out.println("\n<증정 메뉴>");
     }
 
+    public static void printGiveAwayEvent(int gitEventDiscount) {
+        System.out.println("증정 이벤트: " + "-" + gitEventDiscount + "원");
+    }
+
+
 
 
 
