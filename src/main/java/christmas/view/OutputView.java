@@ -80,7 +80,7 @@ public class OutputView {
         if(badge == Badge.Tree){
             System.out.println("나무");
         }
-        if(badge == Badge.Stanta){
+        if(badge == Badge.Santa){
             System.out.println("산타");
         }
     }
