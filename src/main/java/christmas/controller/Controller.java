@@ -28,7 +28,7 @@ public class Controller {
         int weekEndPrice = weekEndPrice(visitDay, orderMenu);
         int specialDayPrice = specialDayPrice(visitDay);
         int promotionPrice = promotionPrice(totalPrice);
-        int totalSalePrice = weekdayPrice+weekEndPrice+specialDayPrice+promotionPrice+salePrice.getSale();
+        int totalSalePrice = weekdayPrice + weekEndPrice + specialDayPrice + promotionPrice + salePrice.getSale();
         OutputView.printTotalSalePrice(totalSalePrice);
         int amountTotalPrice = totalPrice - totalSalePrice;
         OutputView.printAmountOfPayment(amountTotalPrice);
@@ -49,28 +49,25 @@ public class Controller {
 
 
     private int specialDayPrice(VisitDay visitDay) {
-        int day = visitDay.getDay();
-        int discount = 0;
-        if (day == 3 || day == 10 || day == 17 || day == 24 || day == 25 || day == 31) {
-            discount = 1000;
+        List<Integer> specialDays = List.of(3, 10, 17, 24, 25, 31);
+        if (visitDay.isContained(specialDays)) {
+            final int discount = 1000;
             OutputView.printSpecialDay(discount);
         }
-
-        return discount;
+        return 0;
     }
 
     private int weekEndPrice(VisitDay visitDay, OrderMenu orderMenu) {
         int weekdaySalePrice = 0;
         if (visitDay.isWeekend()) {
             weekdaySalePrice = weekendSale(visitDay, orderMenu);
-            if(weekdaySalePrice != 0 ){
+            if (weekdaySalePrice != 0) {
                 OutputView.printSaleWeekend(weekdaySalePrice);
             }
         }
 
         return weekdaySalePrice;
     }
-
 
 
     private int weekDayPrice(VisitDay visitDay, OrderMenu orderMenu) {
@@ -87,11 +84,11 @@ public class Controller {
         Map<Menu, Integer> orderMap = orderMenu.getOrderMap();
         int mainDiscount = 2023;
         int discountPrice = 0;
-        if(visitDay.isWeekend()){
+        if (visitDay.isWeekend()) {
             for (Entry<Menu, Integer> entry : orderMap.entrySet()) {
                 Menu menu = entry.getKey();
                 int count = entry.getValue();
-                if(menu.getMenuCategory() == MenuCategory.Main){
+                if (menu.getMenuCategory() == MenuCategory.Main) {
                     discountPrice += mainDiscount * count;
                 }
             }
@@ -102,20 +99,19 @@ public class Controller {
     private int weekdaySale(VisitDay visitDay, OrderMenu orderMenu) {
         int dessertDiscount = 2023;
         int discountPrice = 0;
-        if(visitDay.isWeekday()){
+        if (visitDay.isWeekday()) {
             Map<Menu, Integer> orderMap = orderMenu.getOrderMap();
             for (Entry<Menu, Integer> entry : orderMap.entrySet()) {
                 Menu menu = entry.getKey();
                 List<Menu> menuCount = new ArrayList<>();
                 menuCount.add(menu);
-                if(menu.getMenuCategory() == MenuCategory.Dessert){
-                    discountPrice += dessertDiscount *  menuCount.size();
+                if (menu.getMenuCategory() == MenuCategory.Dessert) {
+                    discountPrice += dessertDiscount * menuCount.size();
                 }
             }
         }
         return discountPrice;
     }
-
 
 
     private OrderMenu orderMenu() {
@@ -127,12 +123,12 @@ public class Controller {
     }
 
     private static VisitDay visitDay() {
-        try{
+        try {
             OutputView.printEventStart();
             OutputView.printExpectationVisited();
             String userInput = InputView.userInput();
             return new VisitDay(InputView.parsedInputNumber(userInput));
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
             return visitDay();
         }
@@ -148,14 +144,13 @@ public class Controller {
             Menu menu = Menu.findByName(parts[0].trim());
             int count = Integer.parseInt(parts[1].trim());
 
-            if(orderMap.containsKey(menu)){
+            if (orderMap.containsKey(menu)) {
                 throw new IllegalArgumentException("같은 매뉴를 입력했습니다");
             }
-            orderMap.put(menu,count);
+            orderMap.put(menu, count);
         }
         return new OrderMenu(orderMap);
     }
-
 
 
 }
