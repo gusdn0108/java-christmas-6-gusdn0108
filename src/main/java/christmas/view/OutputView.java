@@ -20,5 +20,9 @@ public class OutputView {
         System.out.println("크리스마스 디데이 할인: "+"-"+salePrice+"원");
     }
 
+    public static void printSaleWeekDay(int weekdaySalePrice) {
+        System.out.println("평일 할인: "+"-"+weekdaySalePrice+"원");
+    }
+
 
 }
