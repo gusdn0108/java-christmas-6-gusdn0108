@@ -3,6 +3,7 @@ package christmas.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class OrderMenu {
     private final Map<Menu, Integer> orderMap;
@@ -11,11 +12,11 @@ public class OrderMenu {
     public OrderMenu(Map<Menu, Integer> orderMap) {
         // 음료만 주문 x
         // 20개 초과x
-        if(isOnlyDrink(orderMap)){
+        if (isOnlyDrink(orderMap)) {
             throw new IllegalArgumentException("음료만 주문할수 없습니다");
         }
 
-        if(isOverMenuCount(orderMap)){
+        if (isOverMenuCount(orderMap)) {
             throw new IllegalArgumentException("20개 초과 주문할수없습니다");
         }
 
@@ -32,14 +33,14 @@ public class OrderMenu {
 
     private boolean isOnlyDrink(Map<Menu, Integer> orderMap) {
         for (Menu menu : orderMap.keySet()) {
-            if(menu.getMenuCategory()!= MenuCategory.Drink){
+            if (menu.getMenuCategory() != MenuCategory.Drink) {
                 return false;
             }
         }
         return true;
     }
 
-    public int totalPrice(){
+    public int totalPrice() {
         int sum = 0;
         for (Map.Entry<Menu, Integer> entry : orderMap.entrySet()) {
             Menu menu = entry.getKey();
@@ -50,13 +51,9 @@ public class OrderMenu {
     }
 
     public List<Menu> getMenuInCategory(MenuCategory menuCategory) {
-        List<Menu> menus = new ArrayList<>();
-        for(Menu menu : orderMap.keySet()){
-            if(menu.getMenuCategory().equals(menuCategory)){
-                menus.add(menu);
-            }
-        }
-        return menus;
+        return orderMap.keySet().stream()
+                .filter(menu -> menu.isCategory(menuCategory))
+                .collect(Collectors.toList());
     }
 
     public int getOrderCount(Menu categroyMenu) {
