@@ -12,7 +12,7 @@ public enum Badge {
         this.minimumPrice = minimumPrice;
     }
 
-    public Badge awardBadge(int price) {
+    public static Badge awardBadge(int price) {
         Badge maxBadge = Nothing;
 
         for (Badge badge : values()) {
