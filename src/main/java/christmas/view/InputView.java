@@ -3,6 +3,7 @@ package christmas.view;
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.Menu;
 import christmas.domain.OrderMenu;
+import christmas.domain.VisitDay;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +17,17 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
+    public static VisitDay visitDay() {
+        try {
+            OutputView.printEventStart();
+            OutputView.printExpectationVisited();
+            String userInput = InputView.userInput();
+            return new VisitDay(InputView.parsedInputNumber(userInput));
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            return visitDay();
+        }
+    }
     public static OrderMenu orderMenu() {
         OutputView.printOrderMenuAndCounted();
         String userInput1 = InputView.userInput();
