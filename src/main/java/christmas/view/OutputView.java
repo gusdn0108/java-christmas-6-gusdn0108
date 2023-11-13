@@ -32,7 +32,7 @@ public class OutputView {
 
     public static void printBeforeSaleTotalPrice(int totalprice){
         System.out.println("\n<할인 전 총주문 금액>");
-        System.out.println(totalprice+"원");
+        System.out.println(formatPrice(totalprice));
     }
 
     public static void printBenefitDetails() {
@@ -41,29 +41,29 @@ public class OutputView {
 
 
     public static void printDaySalePrice(int salePrice) {
-        System.out.println("크리스마스 디데이 할인: "+"-"+salePrice+"원");
+        System.out.println("크리스마스 디데이 할인: "+formatPrice(-salePrice));
     }
 
     public static void printSaleWeekDay(int weekdaySalePrice) {
-        System.out.println("평일 할인: "+"-"+weekdaySalePrice+"원");
+        System.out.println("평일 할인: " + formatPrice(-weekdaySalePrice));
     }
 
     public static void printSaleWeekend(int weekdaySalePrice) {
-        System.out.println("주말 할인: "+(-1)*weekdaySalePrice+"원");
+        System.out.println("주말 할인: " + formatPrice(-weekdaySalePrice));
     }
 
     public static void printSpecialDay(int discount) {
-        System.out.println("특별 할인: "+"-"+discount+"원 ");
+        System.out.println("특별 할인: " + formatPrice(-discount));
     }
 
     public static void printTotalSalePrice(int totalSalePrice) {
         System.out.println("\n<총혜택 금액>");
-        System.out.println((-1)*totalSalePrice+"원");
+        System.out.println(formatPrice(-totalSalePrice));
     }
 
     public static void printAmountOfPayment(int amountTotalPrice) {
         System.out.println("\n<할인 후 예상 결제 금액>");
-        System.out.println(amountTotalPrice+"원");
+        System.out.println(formatPrice(amountTotalPrice));
     }
 
     public static void printPromotionBadgeEvent(){
@@ -94,11 +94,15 @@ public class OutputView {
     }
 
     public static void printGiveAwayEvent(int gitEventDiscount) {
-        System.out.println("증정 이벤트: " + "-" + gitEventDiscount + "원");
+        System.out.println("증정 이벤트: " + formatPrice(-gitEventDiscount));
     }
 
     public static void printGiveAwayChampagne() {
         System.out.println("샴페인 1개");
+    }
+
+    private static String formatPrice(int price) {
+        return String.format("%,d원", price);
     }
 
 
