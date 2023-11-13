@@ -23,14 +23,14 @@ public class Controller {
         OrderMenu orderMenu = InputView.orderMenu();
         int totalPrice = orderMenu.totalPrice();
 
-        if(totalPrice > GIVE_AWAY_CONDITIONS){
+        if (totalPrice > GIVE_AWAY_CONDITIONS) {
             OutputView.promotionMenu();
             OutputView.printGiveAwayChampagne();
         }
 
         OutputView.printBeforeSaleTotalPrice(totalPrice);
 
-        if(totalPrice < GIVE_AWAY_CONDITIONS){
+        if (totalPrice < GIVE_AWAY_CONDITIONS) {
             OutputView.promotionMenu();
             OutputView.printNoting();
         }
@@ -38,8 +38,7 @@ public class Controller {
         OutputView.printBenefitDetails();
         int discountPrice = discountPrice(visitDay, orderMenu);
 
-
-        if(totalPrice < EVENT_NOTING_CONDITION){
+        if (totalPrice < EVENT_NOTING_CONDITION) {
             OutputView.printNoting();
         }
         int promotionPrice = promotionPrice(totalPrice);
@@ -50,12 +49,12 @@ public class Controller {
 
         Badge badge = Badge.awardBadge(amountTotalPrice);
 
-        if(discountPrice + promotionPrice < BADGE_PRICE_CONDITION){
+        if (discountPrice + promotionPrice < BADGE_PRICE_CONDITION) {
             OutputView.printPromotionBadgeEvent();
             OutputView.printNoting();
         }
 
-        if(discountPrice + promotionPrice > BADGE_PRICE_CONDITION){
+        if (discountPrice + promotionPrice > BADGE_PRICE_CONDITION) {
             OutputView.printEventBadge(badge);
         }
     }
@@ -70,10 +69,9 @@ public class Controller {
     }
 
     private int discountPrice(VisitDay visitDay, OrderMenu orderMenu) {
-        Sales sales = new Sales(List.of(new DdaySale(), new SpecialDaySale(), new WeekendDaySale(), new WeekdaySale()));
+        Sales sales = new Sales(List.of(new DdaySale(), new WeekendDaySale(), new WeekdaySale(), new SpecialDaySale()));
         return sales.discountAll(visitDay, orderMenu);
     }
-
 
 }
 
