@@ -10,6 +10,7 @@ import christmas.view.OutputView;
 public class WeekdaySale implements Sale {
 
     private static final int DISCOUNT_PRICE = 2023;
+
     public int discount(VisitDay visitDay, OrderMenu orderMenu) {
         int weekdaySalePrice = 0;
         if (visitDay.isWeekday()) {
@@ -19,6 +20,7 @@ public class WeekdaySale implements Sale {
 
         return weekdaySalePrice;
     }
+
     public int weekdaySale(VisitDay visitDay, OrderMenu orderMenu) {
         int discountPrice = 0;
         if (visitDay.isWeekday()) {

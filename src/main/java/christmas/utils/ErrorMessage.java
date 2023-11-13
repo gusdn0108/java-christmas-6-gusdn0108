@@ -9,8 +9,6 @@ public enum ErrorMessage {
     NOT_ORDER_TWENTY_MENU("[ERROR] 20개 초과 주문할수없습니다"),
     INSERT_DAY_RANGE_ERROR("[ERROR] 날짜는 1-31 까지만 입력 가능합니다");
 
-
-
     private final String message;
 
     ErrorMessage(String message) {

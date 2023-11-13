@@ -10,11 +10,11 @@ import java.util.Map;
 
 public class InputView {
 
-    public static String userInput(){
+    public static String userInput() {
         return Console.readLine();
     }
 
-    public static int parsedInputNumber(String input){
+    public static int parsedInputNumber(String input) {
         return Integer.parseInt(input);
     }
 
@@ -29,6 +29,7 @@ public class InputView {
             return visitDay();
         }
     }
+
     public static OrderMenu orderMenu() {
         OutputView.printOrderMenuAndCounted();
         String userInput1 = InputView.userInput();
@@ -62,8 +63,7 @@ public class InputView {
     }
 
     private static int getCount(String[] parts) {
-        int count = Integer.parseInt(parts[1].trim());
-        return count;
+        return Integer.parseInt(parts[1].trim());
     }
 
     private static Menu getMenu(String[] parts, Map<Menu, Integer> orderMap) {
