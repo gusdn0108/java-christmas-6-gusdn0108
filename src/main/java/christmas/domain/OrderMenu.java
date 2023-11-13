@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import christmas.utils.ErrorMessage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,18 +11,20 @@ public class OrderMenu {
 
 
     public OrderMenu(Map<Menu, Integer> orderMap) {
-        // 음료만 주문 x
-        // 20개 초과x
+        validate(orderMap);
+        this.orderMap = orderMap;
+    }
+
+    private void validate(Map<Menu, Integer> orderMap) {
         if (isOnlyDrink(orderMap)) {
-            throw new IllegalArgumentException("음료만 주문할수 없습니다");
+            throw new IllegalArgumentException(ErrorMessage.NOT_ORDER_ONLY_DRINK.getMessage());
         }
 
         if (isOverMenuCount(orderMap)) {
-            throw new IllegalArgumentException("20개 초과 주문할수없습니다");
+            throw new IllegalArgumentException(ErrorMessage.NOT_ORDER_TWENTY_MENU.getMessage());
         }
-
-        this.orderMap = orderMap;
     }
+
 
     private boolean isOverMenuCount(Map<Menu, Integer> orderMap) {
         int sum = 0;
