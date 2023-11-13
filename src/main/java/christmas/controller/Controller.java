@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.domain.Badge;
 import christmas.domain.Menu;
 import christmas.domain.MenuCategory;
 import christmas.domain.OrderMenu;
@@ -34,6 +35,12 @@ public class Controller {
 
         amountTotalPrice = totalPrice - totalSalePrice;
         OutputView.printAmountOfPayment(amountTotalPrice);
+
+        Badge badge = Badge.awardBadge(amountTotalPrice);
+        OutputView.printEventBadge(badge);
+
+
+
 
         if(amountTotalPrice > 5000 && amountTotalPrice < 10000 ){
             System.out.println("\n<12월 이벤트 배지>");
@@ -141,10 +148,15 @@ public class Controller {
     }
 
     private static VisitDay visitDay() {
-        OutputView.printEventStart();
-        OutputView.printExpectationVisited();
-        String userInput = InputView.userInput();
-        return new VisitDay(InputView.parsedInputNumber(userInput));
+        try{
+            OutputView.printEventStart();
+            OutputView.printExpectationVisited();
+            String userInput = InputView.userInput();
+            return new VisitDay(InputView.parsedInputNumber(userInput));
+        }catch (NumberFormatException e){
+            System.out.println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            return visitDay();
+        }
     }
 
     private OrderMenu foodOrder(String order) {
