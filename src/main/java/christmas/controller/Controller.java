@@ -35,6 +35,21 @@ public class Controller {
         amountTotalPrice = totalPrice - totalSalePrice;
         OutputView.printAmountOfPayment(amountTotalPrice);
 
+        if(amountTotalPrice > 5000 && amountTotalPrice < 10000 ){
+            System.out.println("\n<12월 이벤트 배지>");
+            System.out.println("별");
+        }
+
+        if(amountTotalPrice >= 10000 && amountTotalPrice < 20000 ){
+            System.out.println("\n<12월 이벤트 배지>");
+            System.out.println("트리");
+        }
+
+        if(amountTotalPrice > 20000){
+            System.out.println("\n<12월 이벤트 배지>");
+            System.out.println("산타");
+        }
+
     }
 
     private int promotionPrice(int totalPrice) {
