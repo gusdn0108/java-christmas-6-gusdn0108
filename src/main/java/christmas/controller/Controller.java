@@ -24,6 +24,18 @@ public class Controller {
     }
 
 
+
+
+    private int weekDayPrice(VisitDay visitDay, OrderMenu orderMenu) {
+        int weekdaySalePrice = 0;
+        if (Objects.equals(visitDay.getDayType(visitDay.getDay()), "평일")) {
+            weekdaySalePrice = weekdaySale(visitDay, orderMenu);
+            OutputView.printSaleWeekDay(weekdaySalePrice);
+        }
+
+        return weekdaySalePrice;
+    }
+
     private int weekendSale(VisitDay visitDay, OrderMenu orderMenu) {
         Map<Menu, Integer> orderMap = orderMenu.getOrderMap();
         int mainDiscount = 2023;
