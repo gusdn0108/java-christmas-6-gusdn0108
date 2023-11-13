@@ -12,6 +12,9 @@ public class Sales {
     }
 
     public int discountAll(VisitDay visitDay, OrderMenu orderMenu){
+        if(orderMenu.totalPrice() < 10000){
+            return 0;
+        }
         int totalDisCount = 0;
         for (Sale sale : sales) {
             totalDisCount += sale.discount(visitDay,orderMenu);
