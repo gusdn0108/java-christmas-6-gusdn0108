@@ -40,6 +40,24 @@ public class Controller {
         return discountPrice;
     }
 
+    private int weekdaySale(VisitDay visitDay, OrderMenu orderMenu) {
+        int dessertDiscount = 2023;
+        int discountPrice = 0;
+        if(Objects.equals(visitDay.getDayType(visitDay.getDay()), "평일")){
+            Map<Menu, Integer> orderMap = orderMenu.getOrderMap();
+            for (Entry<Menu, Integer> entry : orderMap.entrySet()) {
+                Menu menu = entry.getKey();
+                List<Menu> menuCount = new ArrayList<>();
+                menuCount.add(menu);
+                if(menu.getMenuCategory() == MenuCategory.Dessert){
+                    discountPrice += dessertDiscount *  menuCount.size();
+                }
+            }
+        }
+        return discountPrice;
+    }
+
+
 
     private OrderMenu orderMenu() {
         OutputView.printOrderMenuAndCounted();
