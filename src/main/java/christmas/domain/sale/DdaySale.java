@@ -1,11 +1,10 @@
 package christmas.domain.sale;
 
 import christmas.domain.OrderMenu;
-import christmas.domain.Sale;
 import christmas.domain.VisitDay;
 import christmas.view.OutputView;
 
-public class DdaySale implements SaleInterface{
+public class DdaySale implements Sale {
     public int discount (VisitDay visitDay, OrderMenu orderMenu) {
         if (visitDay.getDay() > 25) {
             return 0;
