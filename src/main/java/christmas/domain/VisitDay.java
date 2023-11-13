@@ -37,6 +37,17 @@ public class VisitDay {
         return dayType;
     }
 
+    private int specialDayPrice(VisitDay visitDay) {
+        int day = visitDay.getDay();
+        int discount = 0;
+        if (day == 3 || day == 10 || day == 17 || day == 24 || day == 25 || day == 31) {
+            discount = 1000;
+            OutputView.printSpecialDay(discount);
+        }
+
+        return discount;
+    }
+
 
     public int getDay() {
         return day;
