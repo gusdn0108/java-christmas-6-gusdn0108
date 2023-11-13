@@ -20,34 +20,14 @@ public class VisitDay {
         dayRange(day);
     }
 
-    public String getDayType(int day) {
-        int dayOfWeek = (day + 5) % 7;
-        String dayType = "주말";
-        if (dayOfWeek >= 1 && dayOfWeek <= 5) {
-            dayType = "평일";
-        }
-        return dayType;
+    public boolean isWeekend() {
+        int mod = day % 7;
+        return mod == 1 || mod == 2;
     }
 
-    public String specialDay(int day) {
-        String dayType = "별";
-        if (day == 3 || day == 10 || day == 17 || day == 24 || day == 25 || day == 31) {
-            dayType = "별";
-        }
-        return dayType;
+    public boolean isWeekday() {
+        return !isWeekend();
     }
-
-    private int specialDayPrice(VisitDay visitDay) {
-        int day = visitDay.getDay();
-        int discount = 0;
-        if (day == 3 || day == 10 || day == 17 || day == 24 || day == 25 || day == 31) {
-            discount = 1000;
-            OutputView.printSpecialDay(discount);
-        }
-
-        return discount;
-    }
-
 
     public int getDay() {
         return day;
