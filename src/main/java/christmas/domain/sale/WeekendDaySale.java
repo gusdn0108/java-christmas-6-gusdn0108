@@ -6,7 +6,7 @@ import christmas.domain.OrderMenu;
 import christmas.domain.VisitDay;
 import christmas.view.OutputView;
 
-public class WeekendDaySale {
+public class WeekendDaySale implements SaleInterface {
     public int discount(VisitDay visitDay, OrderMenu orderMenu) {
         int weekendSalePrice = 0;
         if (visitDay.isWeekend()) {
