@@ -4,11 +4,13 @@ import christmas.domain.Badge;
 import christmas.domain.OrderMenu;
 import christmas.domain.VisitDay;
 import christmas.domain.sale.DdaySale;
+import christmas.domain.sale.Sale;
 import christmas.domain.sale.SpecialDaySale;
 import christmas.domain.sale.WeekdaySale;
 import christmas.domain.sale.WeekendDaySale;
 import christmas.view.InputView;
 import christmas.view.OutputView;
+import java.util.List;
 
 
 public class Controller {
@@ -42,12 +44,14 @@ public class Controller {
 
     private int discountPrice(VisitDay visitDay, OrderMenu orderMenu) {
 
-        int dDaySalePrice = new DdaySale().discount(visitDay,orderMenu);
-        int weekdaySalePrice = new WeekdaySale().discount(visitDay, orderMenu);
-        int weekEndSalePrice = new WeekendDaySale().discount(visitDay, orderMenu);
-        int specialDaySalePrice = new SpecialDaySale().discount(visitDay, orderMenu);
+        List<Sale> sales = List.of(new DdaySale(),new WeekendDaySale(),new WeekdaySale(),new SpecialDaySale());
+        
+        int totalDisCount = 0;
+        for (Sale sale : sales) {
+            totalDisCount += sale.discount(visitDay,orderMenu);
+        }
 
-        return weekdaySalePrice + weekEndSalePrice + specialDaySalePrice+dDaySalePrice;
+        return totalDisCount;
     }
 
 
