@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class OrderMenu {
@@ -47,10 +49,18 @@ public class OrderMenu {
         return sum;
     }
 
+    public List<Menu> getMenuInCategory(MenuCategory menuCategory) {
+        List<Menu> menus = new ArrayList<>();
+        for(Menu menu : orderMap.keySet()){
+            if(menu.getMenuCategory().equals(menuCategory)){
+                menus.add(menu);
+            }
+        }
+        return menus;
+    }
 
     public Map<Menu, Integer> getOrderMap() {
         return orderMap;
     }
-
 
 }
