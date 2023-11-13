@@ -85,5 +85,10 @@ public class OutputView {
         }
     }
 
+    public static void printNoting() {
+        System.out.println("없음");
+    }
+
+
 
 }
