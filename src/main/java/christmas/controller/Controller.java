@@ -6,6 +6,7 @@ import christmas.domain.MenuCategory;
 import christmas.domain.OrderMenu;
 import christmas.domain.Sale;
 import christmas.domain.VisitDay;
+import christmas.domain.sale.SaleInterface;
 import christmas.domain.sale.SpecialDaySale;
 import christmas.domain.sale.WeekdaySale;
 import christmas.domain.sale.WeekendDaySale;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
+import org.mockito.internal.matchers.Or;
 
 public class Controller {
     public void run() {
@@ -28,12 +30,9 @@ public class Controller {
         OutputView.printPromotionPrice();
         OutputView.printDaySalePrice(salePrice.getSale());
 
+       int discountPrice = discountPrice(visitDay,orderMenu);
 
-        int weekdayPrice = new WeekdaySale().discount(visitDay,orderMenu);
-        int weekEndPrice = new WeekendDaySale().discount(visitDay,orderMenu);
-        int specialDayPrice = new SpecialDaySale().discount(visitDay,orderMenu);
         int promotionPrice = promotionPrice(totalPrice);
-
 
         int totalSalePrice = weekdayPrice + weekEndPrice + specialDayPrice + promotionPrice + salePrice.getSale();
         OutputView.printTotalSalePrice(totalSalePrice);
@@ -54,9 +53,15 @@ public class Controller {
         return gitEventDiscount;
     }
 
+    private int discountPrice(VisitDay visitDay, OrderMenu orderMenu){
+        int weekdayPrice = new WeekdaySale().discount(visitDay,orderMenu);
+        int weekEndPrice = new WeekendDaySale().discount(visitDay,orderMenu);
+        int specialDayPrice = new SpecialDaySale().discount(visitDay,orderMenu);
 
+        return weekdayPrice+weekEndPrice+specialDayPrice;
     }
 
 
-
 }
+
+
