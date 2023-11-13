@@ -32,5 +32,10 @@ public class OutputView {
         System.out.println("특별 할인: "+"-"+discount+"원 ");
     }
 
+    public static void printTotalSalePrice(int totalSalePrice) {
+        System.out.println("\n<총혜택 금액>");
+        System.out.println("-"+totalSalePrice+"원");
+    }
+
 
 }
