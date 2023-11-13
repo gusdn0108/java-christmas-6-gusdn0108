@@ -37,5 +37,10 @@ public class OutputView {
         System.out.println("-"+totalSalePrice+"원");
     }
 
+    public static void printAmountOfPayment(int amountTotalPrice) {
+        System.out.println("\n<할인 후 예상 결제 금액>");
+        System.out.println(amountTotalPrice+"원");
+    }
+
 
 }
