@@ -1,5 +1,7 @@
 package christmas.domain.sale;
 
+import christmas.domain.OrderMenu;
+import christmas.domain.VisitDay;
 import java.util.List;
 
 public class Sales {
@@ -7,6 +9,14 @@ public class Sales {
 
     public Sales(List<Sale> sales) {
         this.sales = sales;
+    }
+
+    public int discountAll(VisitDay visitDay, OrderMenu orderMenu){
+        int totalDisCount = 0;
+        for (Sale sale : sales) {
+            totalDisCount += sale.discount(visitDay,orderMenu);
+        }
+        return totalDisCount;
     }
 
     public List<Sale> getSales() {
