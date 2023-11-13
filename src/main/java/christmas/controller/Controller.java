@@ -21,6 +21,9 @@ public class Controller {
         int totalPrice = orderMenu.totalPrice();
         OutputView.printTotalPrice(totalPrice);
         Sale salePrice = Sale.totalDaySalePrice(visitDay.getDay());
+        OutputView.printPromotionPrice();
+        OutputView.printDaySalePrice(salePrice.getSale());
+
     }
 
     private int weekEndPrice(VisitDay visitDay, OrderMenu orderMenu) {
