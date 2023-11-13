@@ -28,12 +28,9 @@ public class Controller {
         int weekEndPrice = weekEndPrice(visitDay, orderMenu);
         int specialDayPrice = specialDayPrice(visitDay);
         int promotionPrice = promotionPrice(totalPrice);
-        int totalSalePrice;
-        totalSalePrice = weekdayPrice+weekEndPrice+specialDayPrice+promotionPrice+salePrice.getSale();
+        int totalSalePrice = weekdayPrice+weekEndPrice+specialDayPrice+promotionPrice+salePrice.getSale();
         OutputView.printTotalSalePrice(totalSalePrice);
-        int amountTotalPrice;
-
-        amountTotalPrice = totalPrice - totalSalePrice;
+        int amountTotalPrice = totalPrice - totalSalePrice;
         OutputView.printAmountOfPayment(amountTotalPrice);
 
         Badge badge = Badge.awardBadge(amountTotalPrice);
@@ -64,7 +61,7 @@ public class Controller {
 
     private int weekEndPrice(VisitDay visitDay, OrderMenu orderMenu) {
         int weekdaySalePrice = 0;
-        if (Objects.equals(visitDay.getDayType(visitDay.getDay()), "주말")) {
+        if (visitDay.isWeekend()) {
             weekdaySalePrice = weekendSale(visitDay, orderMenu);
             if(weekdaySalePrice != 0 ){
                 OutputView.printSaleWeekend(weekdaySalePrice);
@@ -78,7 +75,7 @@ public class Controller {
 
     private int weekDayPrice(VisitDay visitDay, OrderMenu orderMenu) {
         int weekdaySalePrice = 0;
-        if (Objects.equals(visitDay.getDayType(visitDay.getDay()), "평일")) {
+        if (visitDay.isWeekday()) {
             weekdaySalePrice = weekdaySale(visitDay, orderMenu);
             OutputView.printSaleWeekDay(weekdaySalePrice);
         }
@@ -90,7 +87,7 @@ public class Controller {
         Map<Menu, Integer> orderMap = orderMenu.getOrderMap();
         int mainDiscount = 2023;
         int discountPrice = 0;
-        if(Objects.equals(visitDay.getDayType(visitDay.getDay()), "주말")){
+        if(visitDay.isWeekend()){
             for (Entry<Menu, Integer> entry : orderMap.entrySet()) {
                 Menu menu = entry.getKey();
                 int count = entry.getValue();
@@ -105,7 +102,7 @@ public class Controller {
     private int weekdaySale(VisitDay visitDay, OrderMenu orderMenu) {
         int dessertDiscount = 2023;
         int discountPrice = 0;
-        if(Objects.equals(visitDay.getDayType(visitDay.getDay()), "평일")){
+        if(visitDay.isWeekday()){
             Map<Menu, Integer> orderMap = orderMenu.getOrderMap();
             for (Entry<Menu, Integer> entry : orderMap.entrySet()) {
                 Menu menu = entry.getKey();
