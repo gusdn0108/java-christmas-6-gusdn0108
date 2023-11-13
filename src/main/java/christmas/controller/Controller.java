@@ -23,6 +23,13 @@ public class Controller {
         Sale salePrice = Sale.totalDaySalePrice(visitDay.getDay());
         OutputView.printPromotionPrice();
         OutputView.printDaySalePrice(salePrice.getSale());
+        int weekdayPrice = weekDayPrice(visitDay, orderMenu);
+        int weekEndPrice = weekEndPrice(visitDay, orderMenu);
+        int specialDayPrice = specialDayPrice(visitDay);
+        int promotionPrice = promotionPrice(totalPrice);
+        int totalSalePrice;
+        totalSalePrice = weekdayPrice+weekEndPrice+specialDayPrice+promotionPrice+salePrice.getSale();
+        OutputView.printTotalSalePrice(totalSalePrice);
 
 
     }
