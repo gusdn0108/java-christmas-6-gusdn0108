@@ -3,7 +3,7 @@ package christmas.domain;
 public enum Badge {
     Star(5000),
     Tree(10000),
-    Stanta(200000),
+    Santa(200000),
     Nothing(0);
 
     private final int minimumPrice;
