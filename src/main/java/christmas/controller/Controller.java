@@ -14,19 +14,23 @@ import java.util.List;
 
 
 public class Controller {
+    private static final int GIVE_AWAY_CONDITIONS = 120000;
+    private static final int EVENT_NOTING_CONDITION = 10000;
+    private static final int BADGE_PRICE_CONDITION = 5000;
+
     public void run() {
         VisitDay visitDay = InputView.visitDay();
         OrderMenu orderMenu = InputView.orderMenu();
         int totalPrice = orderMenu.totalPrice();
 
-        if(totalPrice > 120000){
+        if(totalPrice > GIVE_AWAY_CONDITIONS){
             OutputView.promotionMenu();
             OutputView.printGiveAwayChampagne();
         }
 
         OutputView.printBeforeSaleTotalPrice(totalPrice);
 
-        if(totalPrice < 120000){
+        if(totalPrice < GIVE_AWAY_CONDITIONS){
             OutputView.promotionMenu();
             OutputView.printNoting();
         }
@@ -35,7 +39,7 @@ public class Controller {
         int discountPrice = discountPrice(visitDay, orderMenu);
 
 
-        if(totalPrice < 10000){
+        if(totalPrice < EVENT_NOTING_CONDITION){
             OutputView.printNoting();
         }
         int promotionPrice = promotionPrice(totalPrice);
@@ -46,19 +50,19 @@ public class Controller {
 
         Badge badge = Badge.awardBadge(amountTotalPrice);
 
-        if(discountPrice + promotionPrice < 5000){
+        if(discountPrice + promotionPrice < BADGE_PRICE_CONDITION){
             OutputView.printPromotionBadgeEvent();
             OutputView.printNoting();
         }
 
-        if(discountPrice + promotionPrice > 5000){
+        if(discountPrice + promotionPrice > BADGE_PRICE_CONDITION){
             OutputView.printEventBadge(badge);
         }
     }
 
     private int promotionPrice(int totalPrice) {
         int gitEventDiscount = 0;
-        if (totalPrice > 120000) {
+        if (totalPrice > GIVE_AWAY_CONDITIONS) {
             gitEventDiscount = 25000;
             OutputView.printGiveAwayEvent(gitEventDiscount);
         }
