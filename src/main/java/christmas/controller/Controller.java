@@ -27,6 +27,16 @@ public class Controller {
 
     }
 
+    private int promotionPrice(int totalPrice) {
+        int gitEventDiscount = 0;
+        if (totalPrice > 120000) {
+            gitEventDiscount = 25000;
+            System.out.println("증정 이벤트: " + "-" + gitEventDiscount + "원");
+        }
+        return gitEventDiscount;
+    }
+
+
     private int specialDayPrice(VisitDay visitDay) {
         int day = visitDay.getDay();
         int discount = 0;
