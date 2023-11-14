@@ -51,5 +51,14 @@ class OrderMenuTest {
         assertThrows(IllegalArgumentException.class, () -> new OrderMenu(invalidOrderMap));
     }
 
+    @DisplayName("음료만 주문했을 경우 예외처리가 잘 나오는지 확인 ")
+    @Test
+    void testOnlyDrinkException() {
+        Map<Menu, Integer> orderMap = new HashMap<>();
+        orderMap.put(Menu.REDWAIN, 2);
+
+        assertThrows(IllegalArgumentException.class, () -> new OrderMenu(orderMap));
+    }
+
 
 }
