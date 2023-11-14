@@ -19,4 +19,11 @@ class MenuTest {
         assertThrows(IllegalArgumentException.class, () -> Menu.findByName("케잌"));
     }
 
+    @DisplayName("매뉴 카테고리를 구분하는 메소드 기능이 잘 작동되는지 확인")
+    @Test
+    void testMenuCategory() {
+        assertTrue(Menu.MUSHROOMCREAMSOUP.isCategory(MenuCategory.Appetizer));
+        assertFalse(Menu.REDWAIN.isCategory(MenuCategory.Dessert));
+    }
+
 }
