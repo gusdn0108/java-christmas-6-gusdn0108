@@ -23,7 +23,6 @@ class WeekdaySaleTest {
         orderMap.put(Menu.CHOCOLATECAKE, 2);
         orderMap.put(Menu.ICECREAM, 1);
 
-
         OrderMenu orderMenu = new OrderMenu(orderMap);
         int discount = weekdaySale.discount(weekday, orderMenu);
 

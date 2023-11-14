@@ -18,4 +18,5 @@ class BadgeTest {
         Badge badge2 = Badge.awardBadge(20000);
         assertEquals(Badge.Santa, badge2);
     }
+
 }

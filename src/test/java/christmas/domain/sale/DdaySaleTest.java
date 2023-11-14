@@ -29,4 +29,5 @@ class DdaySaleTest {
         assertEquals(0, discount);
         assertEquals(3400, discount2);
     }
+
 }
