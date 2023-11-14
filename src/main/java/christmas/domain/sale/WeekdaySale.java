@@ -15,7 +15,9 @@ public class WeekdaySale implements Sale {
         int weekdaySalePrice = 0;
         if (visitDay.isWeekday()) {
             weekdaySalePrice = weekdaySale(visitDay, orderMenu);
-            OutputView.printSaleWeekDay(weekdaySalePrice);
+            if(weekdaySalePrice > 0 ){
+                OutputView.printSaleWeekDay(weekdaySalePrice);
+            }
         }
 
         return weekdaySalePrice;
