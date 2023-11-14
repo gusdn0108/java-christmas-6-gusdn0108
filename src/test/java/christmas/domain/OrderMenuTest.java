@@ -41,4 +41,15 @@ class OrderMenuTest {
         OrderMenu orderMenu = new OrderMenu(orderMap);
         assertEquals(2, orderMenu.getOrderCount(Menu.REDWAIN));
     }
+
+    @DisplayName("주문숫자가 1 미만일 경우 예외처리")
+    @Test
+    void testInvalidOrderMap() {
+        Map<Menu, Integer> invalidOrderMap = new HashMap<>();
+        invalidOrderMap.put(Menu.REDWAIN, -1);
+
+        assertThrows(IllegalArgumentException.class, () -> new OrderMenu(invalidOrderMap));
+    }
+
+
 }
