@@ -60,5 +60,14 @@ class OrderMenuTest {
         assertThrows(IllegalArgumentException.class, () -> new OrderMenu(orderMap));
     }
 
+    @DisplayName("주문숫자가 20 초과일 경우 예외처리")
+    @Test
+    void testTwentyOverOrderMap() {
+        Map<Menu, Integer> invalidOrderMap = new HashMap<>();
+        invalidOrderMap.put(Menu.REDWAIN, 21);
+
+        assertThrows(IllegalArgumentException.class, () -> new OrderMenu(invalidOrderMap));
+    }
+
 
 }
