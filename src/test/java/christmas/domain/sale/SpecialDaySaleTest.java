@@ -27,4 +27,21 @@ class SpecialDaySaleTest {
         assertEquals(1000, discount);
     }
 
+    @DisplayName("특별한 날이 아닐 경우 특별 할인 이 적용 되는지 확인 하기")
+    @Test
+    void testInvalidSpecialDays() {
+        Sale specialDaySale = new SpecialDaySale();
+
+        Map<Menu, Integer> orderMap = new HashMap<>();
+        orderMap.put(Menu.REDWAIN, 2);
+        orderMap.put(Menu.CHRISMASFASTA, 1);
+
+        OrderMenu orderMenu = new OrderMenu(orderMap);
+        VisitDay normalDay = new VisitDay(5);
+
+        int discount = specialDaySale.discount(normalDay, orderMenu);
+
+        assertEquals(0, discount);
+    }
+
 }
