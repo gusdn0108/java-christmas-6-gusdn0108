@@ -16,7 +16,7 @@ public class VisitDay {
 
     private static void dayRange(int day) {
         if (day < INSERT_DAY_MIN_RANGE || day > INSERT_DAY_MAX_RANGE) {
-            throw new IllegalArgumentException(ErrorMessage.INSERT_DAY_RANGE_ERROR.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.USER_INSERT_NOT_AVAILABLE_DAY.getMessage());
         }
     }
 

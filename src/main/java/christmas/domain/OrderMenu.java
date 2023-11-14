@@ -1,7 +1,6 @@
 package christmas.domain;
 
 import christmas.utils.ErrorMessage;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -19,12 +18,13 @@ public class OrderMenu {
         if (isOnlyDrink(orderMap)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_ORDER_ONLY_DRINK.getMessage());
         }
-
         if (isOverMenuCount(orderMap)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_ORDER_TWENTY_MENU.getMessage());
         }
+        if (isOverMinOrder(orderMap)) {
+            throw new IllegalArgumentException(ErrorMessage.USER_INSERT_NOT_AVAILABLE_MENU.getMessage());
+        }
     }
-
 
     private boolean isOverMenuCount(Map<Menu, Integer> orderMap) {
         int sum = 0;
@@ -32,6 +32,14 @@ public class OrderMenu {
             sum += count;
         }
         return sum > 20;
+    }
+
+    private boolean isOverMinOrder(Map<Menu, Integer> orderMap) {
+        int sum = 0;
+        for (int count : orderMap.values()) {
+            sum += count;
+        }
+        return sum < 1;
     }
 
     private boolean isOnlyDrink(Map<Menu, Integer> orderMap) {
