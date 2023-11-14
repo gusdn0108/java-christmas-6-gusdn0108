@@ -48,7 +48,10 @@ public class Controller {
         OutputView.printAmountOfPayment(amountTotalPrice);
 
         Badge badge = Badge.awardBadge(amountTotalPrice);
+        dependsGiveBadge(discountPrice, promotionPrice, badge);
+    }
 
+    private static void dependsGiveBadge(int discountPrice, int promotionPrice, Badge badge) {
         if (discountPrice + promotionPrice < BADGE_PRICE_CONDITION) {
             OutputView.printPromotionBadgeEvent();
             OutputView.printNoting();
