@@ -28,4 +28,11 @@ class VisitDayTest {
         assertTrue(specialDay.isContained(List.of(3, 10, 17)));
     }
 
+    @DisplayName("방문 날짜 범위가 1 미만 31초과 일경우 예외처리")
+    @Test
+    void testInvalidVisitDayRange() {
+        assertThrows(IllegalArgumentException.class, () -> new VisitDay(0));
+        assertThrows(IllegalArgumentException.class, () -> new VisitDay(32));
+    }
+
 }
