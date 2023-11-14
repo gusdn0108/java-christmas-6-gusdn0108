@@ -32,19 +32,20 @@ public class InputView {
     }
 
     public static OrderMenu orderMenu() {
-        try{
+        try {
             OutputView.printOrderMenuAndCounted();
             String order = InputView.userInput();
             OrderMenu orderMap = foodOrder(order);
             OutputView.printShowEvent();
             OutputView.printOrderMenuAndCounted(orderMap.getOrderMap());
             return orderMap;
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return orderMenu();
         }
 
     }
+
     public static OrderMenu foodOrder(String order) {
         Map<Menu, Integer> orderMap = new HashMap<>();
         for (String item : order.split(",")) {
