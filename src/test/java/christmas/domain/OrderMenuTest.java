@@ -68,6 +68,17 @@ class OrderMenuTest {
 
         assertThrows(IllegalArgumentException.class, () -> new OrderMenu(invalidOrderMap));
     }
+    @DisplayName("특정 카테고리 의 매뉴 개수 구하는 기능이 잘 잘동되는지 확인하기")
+    @Test
+    void testGetMenuInCategoryForOrderMenu() {
+        Map<Menu, Integer> orderMap = new HashMap<>();
+        orderMap.put(Menu.REDWAIN, 2);
+        orderMap.put(Menu.CHRISMASFASTA, 1);
+        orderMap.put(Menu.ICECREAM, 3);
+
+        OrderMenu orderMenu = new OrderMenu(orderMap);
+        assertEquals(1, orderMenu.getMenuInCategory(MenuCategory.Dessert).size());
+    }
 
 
 }
