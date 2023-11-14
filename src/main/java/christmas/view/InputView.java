@@ -2,6 +2,7 @@ package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.Menu;
+import christmas.domain.MenuCategory;
 import christmas.domain.OrderMenu;
 import christmas.domain.VisitDay;
 import christmas.utils.ErrorMessage;
@@ -31,47 +32,41 @@ public class InputView {
     }
 
     public static OrderMenu orderMenu() {
-        OutputView.printOrderMenuAndCounted();
-        String userInput1 = InputView.userInput();
-        OutputView.printShowEvent();
-        OrderMenu orderMap = foodOrder(userInput1);
-        OutputView.printOrderMenuAndCounted(orderMap.getOrderMap());
-        return orderMap;
-    }
-
-    public static OrderMenu foodOrder(String order) {
-        try {
-            return getOrderMenu(order);
-        } catch (IllegalArgumentException e) {
-            System.out.println(ErrorMessage.USER_INSERT_NOT_AVAILABLE_MENU.getMessage());
-            return foodOrder(InputView.userInput());
+        try{
+            OutputView.printOrderMenuAndCounted();
+            String order = InputView.userInput();
+            OrderMenu orderMap = foodOrder(order);
+            OutputView.printShowEvent();
+            OutputView.printOrderMenuAndCounted(orderMap.getOrderMap());
+            return orderMap;
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return orderMenu();
         }
-    }
 
-    private static OrderMenu getOrderMenu(String order) {
+    }
+    public static OrderMenu foodOrder(String order) {
         Map<Menu, Integer> orderMap = new HashMap<>();
         for (String item : order.split(",")) {
             String[] parts = item.split("-");
             if (parts.length != 2) {
-                throw new IllegalArgumentException(ErrorMessage.USER_INSERT_MENU_AND_COUNT.getMessage());
+                throw new IllegalArgumentException(ErrorMessage.USER_INSERT_NOT_AVAILABLE_MENU.getMessage());
             }
-            Menu menu = getMenu(parts, orderMap);
-            int count = getCount(parts);
-            orderMap.put(menu, count);
+            Menu menu = Menu.findByName(parts[0].trim());
+            if (orderMap.containsKey(menu)) {
+                throw new IllegalArgumentException(ErrorMessage.USER_INSERT_NOT_AVAILABLE_MENU.getMessage());
+            }
+            try {
+                int count = Integer.parseInt(parts[1].trim());
+                orderMap.put(menu, count);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(ErrorMessage.USER_INSERT_NOT_AVAILABLE_MENU.getMessage());
+            }
         }
         return new OrderMenu(orderMap);
     }
 
-    private static int getCount(String[] parts) {
-        return Integer.parseInt(parts[1].trim());
-    }
-
-    private static Menu getMenu(String[] parts, Map<Menu, Integer> orderMap) {
-        Menu menu = Menu.findByName(parts[0].trim());
-        if (orderMap.containsKey(menu)) {
-            throw new IllegalArgumentException(ErrorMessage.USER_INSERT_DUPLICATION_MENU.getMessage());
-        }
-        return menu;
-    }
-
 }
+
+
+
